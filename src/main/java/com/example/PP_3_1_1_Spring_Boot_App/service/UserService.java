@@ -4,6 +4,7 @@ package com.example.PP_3_1_1_Spring_Boot_App.service;
 import com.example.PP_3_1_1_Spring_Boot_App.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     List<User> getAllUsers();
@@ -15,4 +16,6 @@ public interface UserService {
     User getUserById(Long id);
 
     void updateUser(User user);
+
+    Optional<User> findUserByName(String name);
 }

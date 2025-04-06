@@ -26,10 +26,18 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.password}"></td>
         <td th:each="role : ${user.roles}" th:text="${role.name}"></td>
+        <td>
+            <a th:href="@{/admin/edit(id=${user.id})}">Редактировать</a> |
+            <form th:action="@{/admin/delete}" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${user.id}">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
-
+<a th:href="@{/admin/add}">ADD USER</a>
+<br>
 <a th:href="@{/logout}">LOGOUT</a>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <body>
 <h1>Редактирование пользователя</h1>
 
-<form th:action="@{/users/edit}" th:object="${user}" method="post">
+<form th:action="@{/admin/edit}" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}">
 
     <label for="name">Имя:</label>
@@ -22,10 +22,27 @@
     <input type="email" id="email" th:field="*{email}">
     <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
+    <label for="password">Password:</label>
+    <input type="password" id="password" th:field="*{password}">
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+    <label>Роли:</label>
+    <div th:each="role : ${allRoles}">
+        <input type="checkbox"
+               th:id="${'role_' + role.id}"
+               th:value="${role.id}"
+               th:name="roles"
+               th:checked="${#lists.contains(user.roles, role)}">
+        <label th:for="${'role_' + role.id}" th:text="${role.name}"></label>
+    </div>
+    <div style="color:red" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+
     <button type="submit">Сохранить</button>
 </form>
 
 <br>
-<a th:href="@{/users}">Назад к списку</a>
+<a th:href="@{/admin}">Назад к списку</a>
+<br>
+<a th:href="@{/logout}">LOGOUT</a>
 </body>
 </html>
