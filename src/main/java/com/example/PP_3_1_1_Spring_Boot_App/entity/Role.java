@@ -1,6 +1,9 @@
 package com.example.PP_3_1_1_Spring_Boot_App.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -24,15 +27,12 @@ public class Role implements GrantedAuthority {
     private List<User> users;
 
     @Override
-    public String getAuthority () {
+    public String getAuthority() {
         return this.name;
     }
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }
