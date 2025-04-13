@@ -15,6 +15,8 @@ import java.util.Set;
 @Setter
 public class UserDTO {
 
+    private Long id;
+
     @NotEmpty(message = "Не может быть пустым")
     @Size(max = 20, message = "Долнжо быть меньше 20 символов")
     private String name;
