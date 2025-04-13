@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="">
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
@@ -12,17 +12,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-            <h4 style="color:white">
-                <span>
-                    <span th:text="${admin.email}"></span>
-                    <span> with roles: </span>
-                    <span th:text="${admin.roles}"></span>
-                </span>
-            </h4>
+            <h4 id="navbarUserInfo" style="color:white"></h4>
         </ul>
         <span class="navbar-text">
-                <a th:href="@{/logout}"><h5>Logout</h5></a>
-            </span>
+            <a th:href="@{/logout}"><h5>Logout</h5></a>
+        </span>
     </div>
 </nav>
 <div class="container-fluid">
@@ -56,51 +50,30 @@
                 </div>
             </nav>
             <h2>Add New User</h2>
-            <form th:action="@{/admin/add}" method="post" th:object="${user}">
-
+            <form id="userForm">
                 <div class="mb-3">
                     <label class="form-label" for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
-                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    <input type="text" class="form-control" id="name" name="name">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Age</label>
-                    <input type="text" class="form-control" name="age" th:field="*{age}"
-                           th:classappend="${#fields.hasErrors('age')} ? 'is-invalid' : ''">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+                    <label class="form-label" for="age">Age</label>
+                    <input type="text" class="form-control" name="age" id="age">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" th:field="*{email}"
-                           th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" th:field="*{password}"
-                           th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''">
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
-                         th:errors="*{password}"></div>
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Roles</label>
-                    <div th:each="role : ${allRoles}">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                   th:id="${'role_' + role.id}"
-                                   th:value="${role.id}"
-                                   th:name="roles"
-                                   th:checked="${#lists.contains(user.roles, role)}">
-                            <label class="form-check-label" th:for="${'role_' + role.id}"
-                                   th:text="${role.name}"></label>
-                        </div>
-                    </div>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+                    <div id="rolesContainer"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Add User</button>
@@ -109,5 +82,7 @@
         </div>
     </div>
 </div>
+<script src="/navbar-userinfo-loader.js"></script>
+<script src="/admin-save-form.js"></script>
 </body>
 </html>
