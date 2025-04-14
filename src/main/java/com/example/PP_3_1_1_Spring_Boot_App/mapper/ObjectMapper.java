@@ -8,9 +8,9 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ObjectMapper {
-    public User toUser(UserDTO userDTO);
-    public UserDTO toUserDTO(User user);
+    User toUser(UserDTO userDTO);
+    UserDTO toUserDTO(User user);
 
-    public Role toRole(RoleDTO roleDTO);
-    public RoleDTO toRoleDTO(Role role);
+    Role toRole(RoleDTO roleDTO);
+    RoleDTO toRoleDTO(Role role);
 }
