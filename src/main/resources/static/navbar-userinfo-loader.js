@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(user => {
             document.getElementById('navbarUserInfo').textContent =
-                `${user.email} with roles: ${user.roles.map(r => r.name).join(', ')}`;
+                `${user.email} with roles: ${user.roles.map(r => r.name.replace('ROLE_', '')).join(', ')}`;
         })
         .catch(error => {
             console.error('Ошибка загрузки пользователя:', error);
