@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${user.age}</td>
                     <td>${user.email}</td>
                     <td>${user.password}</td>
-                    <td>${user.roles.map(role => role.name).join(', ')}</td>
+                    <td>${user.roles.map(role => role.name.replace('ROLE_','')).join(', ')}</td>
                 `;
             tbody.appendChild(row);
         })
